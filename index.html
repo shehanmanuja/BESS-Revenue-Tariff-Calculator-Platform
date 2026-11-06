@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXIMIUS POWER AND ENERGY — BESS Revenue & Tariff Calculator Platform</title>
+  <meta name="description"
+    content="Commercial & Industrial BESS financial feasibility, peak tariff arbitrage calculation, and investment returns platform for solar plants ≥ 250 kW in Sri Lanka.">
+
+  <!-- Favicon & Google Font Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <!-- Chart.js, Lucide Icons, html2pdf.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+
+  <!-- ========================================================================= -->
+  <!-- A. STICKY NAVIGATION BAR (Clean, Perfectly Aligned & Spacious)             -->
+  <!-- ========================================================================= -->
+  <header class="header-nav">
+    <div class="container nav-container">
+
+      <!-- Brand Logo: EXIMIUS POWER AND ENERGY (SVG Logo Image from folder) -->
+      <a href="#hero" class="brand-logo" aria-label="EXIMIUS POWER AND ENERGY">
+        <img src="logo.svg" alt="EXIMIUS POWER AND ENERGY" class="brand-logo-img">
+      </a>
+
+      <!-- Desktop Navigation Menu (Strictly Non-Wrapping) -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#how-it-works">How BESS Works</a></li>
+        <li><a href="#tariff-methodology">Tariff Methodology</a></li>
+        <li><a href="#calculator">Financial Calculator</a></li>
+        <li><a href="#about-bess">About BESS</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <!-- Admin Tariff Config Button -->
+        <button id="openAdminModalBtn" class="btn btn-secondary btn-sm" title="Configure Regulatory Tariff Parameters">
+          <i data-lucide="sliders" class="w-3.5 h-3.5"></i>
+          <span>Tariff Config</span>
+        </button>
+
+        <!-- Primary CTA -->
+        <a href="#calculator" class="btn btn-primary btn-sm">
+          <span>Calculate Potential</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuBtn" class="btn btn-ghost btn-sm mobile-menu-toggle" aria-label="Toggle navigation">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileNavMenu" class="mobile-nav-drawer hidden">
+      <ul class="mobile-nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#how-it-works">How BESS Works</a></li>
+        <li><a href="#tariff-methodology">Tariff Methodology</a></li>
+        <li><a href="#calculator">Financial Calculator</a></li>
+        <li><a href="#about-bess">About BESS</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- B. HERO SECTION (Poppins Font, Centered & Minimalist)                     -->
+  <!-- ========================================================================= -->
+  <section id="hero" class="hero-section">
+    <div class="container">
+
+      <!-- Eyebrow Pill -->
+      <div class="hero-badge-wrap">
+        <span class="hero-badge-dot"></span>
+        <span class="hero-badge-text">EXIMIUS POWER AND ENERGY &bull; BESS FEASIBILITY PLATFORM</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="hero-title">
+        Unlock More Value From Your <span class="hero-title-accent">Existing Solar Investment.</span>
+      </h1>
+
+      <!-- Supporting Subtitle -->
+      <p class="hero-desc">
+        Discover the financial potential of integrating Battery Energy Storage Systems into your existing solar power
+        plant. Capture up to <strong>+116% tariff arbitrage</strong> during the 18:30 – 22:30 evening priority dispatch
+        window under approved PUCSL &amp; CEB guidelines.
+      </p>
+
+      <!-- CTAs -->
+      <div class="hero-actions">
+        <a href="#calculator" class="btn btn-primary btn-lg">
+          <i data-lucide="calculator" class="w-5 h-5 mr-1"></i>
+          <span>Calculate Your BESS Potential</span>
+        </a>
+        <a href="#how-it-works" class="btn btn-secondary btn-lg">
+          <i data-lucide="play-circle" class="w-5 h-5 mr-1"></i>
+          <span>Explore How It Works</span>
+        </a>
+      </div>
+
+      <!-- Hero Visual Showcase Card (Clean White Floating Container) -->
+      <div class="hero-visual-card">
+        <div class="bess-terminal-header">
+          <div class="terminal-title">
+            <i data-lucide="cpu" class="w-4 h-4 text-emerald-600"></i>
+            <span>EXIMIUS DISPATCH CONTROLLER &bull; REAL-TIME SIMULATION</span>
+          </div>
+          <div class="terminal-status-live">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>CEB 33kV GRID SYNCHRONIZED</span>
+          </div>
+        </div>
+
+        <!-- Terminal Inner Grid -->
+        <div
+          style="background: var(--bg-subtle); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); padding: 22px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <div>
+              <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; font-weight: 600;">
+                Interconnection Substation</div>
+              <div style="font-size: 1rem; font-weight: 700; color: var(--text-dark);">CEB 33kV Peliyagoda Industrial
+                Feeder</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; font-weight: 600;">Grid
+                Frequency</div>
+              <div
+                style="font-size: 1.05rem; font-weight: 700; font-family: var(--font-mono); color: var(--accent-emerald);">
+                50.02 Hz (Stable)</div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+            <div
+              style="background: #ffffff; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 14px; box-shadow: var(--shadow-sm);">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <i data-lucide="sun" class="w-4 h-4 text-amber-500"></i>
+                <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Solar PV Output</span>
+              </div>
+              <div
+                style="font-size: 1.45rem; font-weight: 800; font-family: var(--font-mono); color: var(--color-amber);">
+                500 kWp</div>
+              <div style="font-size: 0.72rem; color: var(--text-dim);">Midday solar generation peak</div>
+            </div>
+
+            <div
+              style="background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: var(--radius-sm); padding: 14px;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <i data-lucide="battery-charging" class="w-4 h-4 text-emerald-600"></i>
+                <span style="font-size: 0.78rem; font-weight: 600; color: var(--accent-dark);">BESS Container
+                  (LFP)</span>
+              </div>
+              <div
+                style="font-size: 1.45rem; font-weight: 800; font-family: var(--font-mono); color: var(--accent-emerald);">
+                1,000 kWh</div>
+              <div style="font-size: 0.72rem; color: var(--accent-dark);">SoC: 92% &bull; 250 kW Bi-Dir PCS (C/4)</div>
+            </div>
+          </div>
+
+          <div
+            style="background: #ffffff; padding: 12px 16px; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-main); border: 1px dashed var(--border-medium); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <span><strong style="color: var(--text-dim);">Approved Formula:</strong> 33.51 + (13.45 / 0.95)</span>
+            <span style="color: var(--accent-emerald); font-weight: 700; font-size: 0.92rem;">= 47.67 LKR/kWh Priority
+              Feed-In</span>
+          </div>
+        </div>
+
+        <!-- Hero Stats Row -->
+        <div class="hero-stats-row">
+          <div>
+            <div class="stat-item-num" style="color: var(--accent-emerald);">47.67 <span
+                style="font-size: 1rem; font-weight: 500; color: var(--text-dim);">LKR/kWh</span></div>
+            <div class="stat-item-label">Tier 1 Peak Priority Tariff</div>
+          </div>
+          <div>
+            <div class="stat-item-num">+116% <span
+                style="font-size: 1rem; font-weight: 500; color: var(--text-dim);">Spread</span></div>
+            <div class="stat-item-label">Arbitrage Over 22.00 LKR Base</div>
+          </div>
+          <div>
+            <div class="stat-item-num">18:30 – 22:30</div>
+            <div class="stat-item-label">4-Hour Evening Peak Window</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- CREATIVE BENCHMARK PRESETS BAR                                            -->
+  <!-- ========================================================================= -->
+  <section class="presets-strip-section container">
+    <div class="presets-strip-card">
+      <div class="presets-label-area">
+        <i data-lucide="sparkles" class="w-4 h-4 text-emerald-600"></i>
+        <span>Instant Plant Benchmarks:</span>
+      </div>
+      <div class="presets-buttons-wrap">
+        <button type="button" class="preset-pill-btn active" data-preset="tea-factory-500kw">
+          <i data-lucide="factory" class="w-3.5 h-3.5"></i> 500 kW Tea Factory
+        </button>
+        <button type="button" class="preset-pill-btn" data-preset="garment-apparel-1000kw">
+          <i data-lucide="shirt" class="w-3.5 h-3.5"></i> 1,000 kW Apparel Complex
+        </button>
+        <button type="button" class="preset-pill-btn" data-preset="commercial-mall-300kw">
+          <i data-lucide="building" class="w-3.5 h-3.5"></i> 300 kW Retail Center
+        </button>
+        <button type="button" class="preset-pill-btn" data-preset="ground-mount-utility-2000kw">
+          <i data-lucide="sun-medium" class="w-3.5 h-3.5"></i> 2,000 kW Solar Park
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- OPPORTUNITY SECTION (Rooftop Money Style Clean Cards)                     -->
+  <!-- ========================================================================= -->
+  <section class="section-wrapper" style="background: #ffffff;">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="section-eyebrow">The Opportunity</span>
+        <h2 class="section-title">Underutilized Solar is Wasted Revenue</h2>
+        <p class="section-subtitle">
+          Commercial solar plants without storage sell excess generation during low-demand daytime hours for modest
+          rates, leaving massive peak-period value uncaptured.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+
+        <div
+          style="background: #ffffff; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm); transition: transform 0.2s;"
+          onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div
+            style="width: 44px; height: 44px; border-radius: 50%; background: #fee2e2; display: flex; align-items: center; justify-content: center; color: #ef4444; margin-bottom: 18px;">
+            <i data-lucide="trending-down" class="w-5 h-5"></i>
+          </div>
+          <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Low Daytime Feed-In</h4>
+          <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.6;">
+            Standard daytime export contracts pay only ~22.00 LKR/kWh, while grid peak power costs exceed 45+ LKR/kWh.
+          </p>
+        </div>
+
+        <div
+          style="background: #ffffff; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm); transition: transform 0.2s;"
+          onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div
+            style="width: 44px; height: 44px; border-radius: 50%; background: #fef3c7; display: flex; align-items: center; justify-content: center; color: #d97706; margin-bottom: 18px;">
+            <i data-lucide="alert-circle" class="w-5 h-5"></i>
+          </div>
+          <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Midday Grid Curtailment</h4>
+          <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.6;">
+            Utility substations increasingly curtail solar generation during sunny weekends and low factory loads to
+            protect grid voltage.
+          </p>
+        </div>
+
+        <div
+          style="background: #ffffff; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm); transition: transform 0.2s;"
+          onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div
+            style="width: 44px; height: 44px; border-radius: 50%; background: #e0f2fe; display: flex; align-items: center; justify-content: center; color: #0284c7; margin-bottom: 18px;">
+            <i data-lucide="moon" class="w-5 h-5"></i>
+          </div>
+          <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Zero Night Coverage</h4>
+          <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.6;">
+            Solar generators cannot offset heavy night operational loads or supply the grid during the CEB 18:30 – 22:30
+            system peak.
+          </p>
+        </div>
+
+        <div
+          style="background: #ffffff; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm); transition: transform 0.2s;"
+          onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div
+            style="width: 44px; height: 44px; border-radius: 50%; background: var(--accent-light); display: flex; align-items: center; justify-content: center; color: var(--accent-emerald); margin-bottom: 18px;">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          </div>
+          <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">The BESS Solution</h4>
+          <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.6;">
+            Store midday surplus and export at premium priority tariffs up to 47.67 LKR/kWh, turning idle energy into
+            recurring cash flow.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- C. HOW BESS WORKS SECTION                                                 -->
+  <!-- ========================================================================= -->
+  <section id="how-it-works" class="section-wrapper"
+    style="background: var(--bg-subtle); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="section-eyebrow">Operating Dynamics</span>
+        <h2 class="section-title">How BESS Works With Existing Solar Plants</h2>
+        <p class="section-subtitle">
+          Commercial solar generation peaks between 10:00 and 14:00 when grid demand is low. An integrated BESS captures
+          midday surplus and dispatches it during the CEB/LECO 18:30 – 22:30 evening priority window.
+        </p>
+      </div>
+
+      <!-- Interactive 24-Hour Energy Flow Simulation Visualizer -->
+      <div class="energy-flow-visualizer">
+
+        <!-- Simulation Control Bar -->
+        <div class="sim-control-bar">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <button id="simPlayBtn" class="btn btn-secondary btn-sm">
+              <i data-lucide="play" class="w-4 h-4 mr-1"></i>
+              <span>Play Simulation</span>
+            </button>
+            <div style="font-family: var(--font-mono); font-weight: 700; font-size: 1.15rem; color: var(--text-dark);"
+              id="simHourLabel">
+              12:00 hrs
+            </div>
+          </div>
+
+          <!-- Time Slider -->
+          <div class="sim-slider-wrap">
+            <span style="font-size: 0.75rem; color: var(--text-dim); font-weight: 600;">00:00</span>
+            <input type="range" id="simHourSlider" class="custom-range" min="0" max="23.5" step="0.5" value="12">
+            <span style="font-size: 0.75rem; color: var(--text-dim); font-weight: 600;">23:59</span>
+          </div>
+
+          <!-- Dynamic Status -->
+          <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-dark);" id="simStatusLabel">
+            Midday Peak: BESS Charging from Excess Solar at DC/AC Bus
+          </div>
+        </div>
+
+        <!-- Flow Diagram Nodes (Animated Energy Flow) -->
+        <div class="flow-diagram-nodes">
+
+          <!-- Node 1: Existing Solar PV Array -->
+          <div class="flow-node-card">
+            <div class="flow-node-icon" style="background: #fffbeb; border-color: #fde68a; color: #d97706;">
+              <i data-lucide="sun" class="w-6 h-6"></i>
+            </div>
+            <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; font-weight: 600;">1.
+              Generation</div>
+            <div style="font-size: 0.98rem; font-weight: 700; color: var(--text-dark); margin-top: 2px;">Solar PV Plant
+            </div>
+            <div
+              style="font-size: 1.25rem; font-weight: 800; font-family: var(--font-mono); color: #d97706; margin-top: 6px;"
+              id="simSolarVal">
+              425 kW
+            </div>
+            <div class="flow-arrow-connector">
+              <i data-lucide="arrow-right" class="w-5 h-5 pulse-arrow active-pulse" id="pulseSolarToBess"></i>
+            </div>
+          </div>
+
+          <!-- Node 2: Bi-directional PCS / Inverter -->
+          <div class="flow-node-card">
+            <div class="flow-node-icon" style="background: #ecfeff; border-color: #a5f3fc; color: #0891b2;">
+              <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+            </div>
+            <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; font-weight: 600;">2.
+              Conversion</div>
+            <div style="font-size: 0.98rem; font-weight: 700; color: var(--text-dark); margin-top: 2px;">Bi-Dir PCS
+            </div>
+            <div style="font-size: 0.84rem; color: #0891b2; margin-top: 8px; font-weight: 600;">
+              98.5% Inverter η
+            </div>
+            <div class="flow-arrow-connector">
+              <i data-lucide="arrow-right" class="w-5 h-5 pulse-arrow" id="pulseSolarToGrid"></i>
+            </div>
+          </div>
+
+          <!-- Node 3: BESS LFP Storage Container -->
+          <div class="flow-node-card" style="border-color: var(--accent-border); background: var(--accent-light);">
+            <div class="flow-node-icon"
+              style="background: #ffffff; border-color: var(--accent-border); color: var(--accent-emerald);">
+              <i data-lucide="battery-charging" class="w-6 h-6"></i>
+            </div>
+            <div style="font-size: 0.72rem; color: var(--accent-dark); text-transform: uppercase; font-weight: 600;">3.
+              Storage</div>
+            <div style="font-size: 0.98rem; font-weight: 700; color: var(--accent-dark); margin-top: 2px;">BESS
+              Container</div>
+            <div style="font-size: 0.88rem; margin-top: 6px;" id="simBessState" class="text-emerald-700 font-bold">
+              CHARGING (250 kW)
+            </div>
+            <div class="flow-arrow-connector">
+              <i data-lucide="arrow-right" class="w-5 h-5 pulse-arrow" id="pulseBessToGrid"></i>
+            </div>
+          </div>
+
+          <!-- Node 4: National Utility Grid Interconnection -->
+          <div class="flow-node-card">
+            <div class="flow-node-icon" style="background: #eff6ff; border-color: #bfdbfe; color: #2563eb;">
+              <i data-lucide="zap" class="w-6 h-6"></i>
+            </div>
+            <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; font-weight: 600;">4.
+              Grid Intertie</div>
+            <div style="font-size: 0.98rem; font-weight: 700; color: var(--text-dark); margin-top: 2px;">CEB / LECO 33kV
+            </div>
+            <div style="font-size: 0.88rem; margin-top: 6px;" id="simGridState" class="text-emerald-700 font-semibold">
+              Exporting 175 kW
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- 6-Stage Process Breakdown Cards -->
+      <div class="stages-grid">
+
+        <div class="stage-card stage-jump-btn" data-hour="9">
+          <div class="stage-badge">STAGE 01</div>
+          <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 6px;">Solar Generation</h4>
+          <p style="font-size: 0.84rem; color: var(--text-muted); line-height: 1.5;">
+            Solar PV panels generate power during daylight hours based on sunlight intensity.
+          </p>
+        </div>
+
+        <div class="stage-card stage-jump-btn" data-hour="11">
+          <div class="stage-badge">STAGE 02</div>
+          <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 6px;">Excess Solar Energy</h4>
+          <p style="font-size: 0.84rem; color: var(--text-muted); line-height: 1.5;">
+            Facility consumes needed power; surplus generation is directed towards energy storage instead of low
+            feed-in.
+          </p>
+        </div>
+
+        <div class="stage-card stage-jump-btn" data-hour="12.5">
+          <div class="stage-badge">STAGE 03</div>
+          <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 6px;">Battery Charging</h4>
+          <p style="font-size: 0.84rem; color: var(--text-muted); line-height: 1.5;">
+            Surplus power is converted through bi-directional PCS to charge the high-density LFP battery container
+            safely.
+          </p>
+        </div>
+
+        <div class="stage-card stage-jump-btn" data-hour="16">
+          <div class="stage-badge">STAGE 04</div>
+          <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 6px;">Energy Storage</h4>
+          <p style="font-size: 0.84rem; color: var(--text-muted); line-height: 1.5;">
+            Stored electricity is maintained under active liquid/air thermal HVAC management awaiting priority window.
+          </p>
+        </div>
+
+        <div class="stage-card stage-jump-btn" data-hour="19.5">
+          <div class="stage-badge">STAGE 05</div>
+          <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 6px;">Priority Discharging</h4>
+          <p style="font-size: 0.84rem; color: var(--text-muted); line-height: 1.5;">
+            From 18:30 to 22:30, battery dispatches stored power to the utility grid during evening peak stress hours.
+          </p>
+        </div>
+
+        <div class="stage-card stage-jump-btn" data-hour="21">
+          <div class="stage-badge">STAGE 06</div>
+          <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 6px;">Additional Revenue</h4>
+          <p style="font-size: 0.84rem; color: var(--text-muted); line-height: 1.5;">
+            Earn premium priority feed-in tariff (up to 47.67 LKR/kWh) generating millions in incremental annual
+            returns.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- HIGH-IMPACT CONTRAST BANNER (Like Rooftop Money's Forest Green Panel)     -->
+  <!-- ========================================================================= -->
+  <section class="container">
+    <div class="dark-feature-banner">
+      <div style="position: relative; z-index: 2;">
+        <span
+          style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.1em; color: var(--accent-border); display: inline-block; margin-bottom: 12px;">
+          Guaranteed Value Creation &bull; EXIMIUS POWER AND ENERGY
+        </span>
+        <h3>Turn your daytime solar surplus into high-value evening dispatch.</h3>
+        <p>
+          Qualify for the published PUCSL Prosumer BESS tariff pathway. Shift your daytime power into the 18:30 – 22:30
+          peak window and capture up to 47.67 LKR/kWh with complete regulatory compliance.
+        </p>
+        <a href="#calculator" class="btn" style="background: #ffffff; color: #064e3b; font-weight: 700;">
+          <span>Launch Project Calculator</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- D. TARIFF CALCULATION METHODOLOGY SECTION                                -->
+  <!-- ========================================================================= -->
+  <section id="tariff-methodology" class="section-wrapper" style="background: #ffffff;">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="section-eyebrow">Regulatory Compliance & Transparency</span>
+        <h2 class="section-title">Understand Your BESS Tariff Calculation</h2>
+        <p class="section-subtitle">
+          The Public Utilities Commission of Sri Lanka (PUCSL) and Ceylon Electricity Board (CEB) have established
+          formal tariff structures for prosumers integrating battery storage into existing solar plants.
+        </p>
+      </div>
+
+      <!-- Regulatory Distinction Warning Banner for Ground-Mount -->
+      <div class="regulatory-notice-banner" id="generalTariffNotice">
+        <i data-lucide="info" class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0"></i>
+        <div style="font-size: 0.86rem; line-height: 1.5;">
+          <strong>CRITICAL REGULATORY RULE:</strong> The prosumer formulas shown below strictly apply to eligible
+          <strong>Rooftop Solar PV installations (&ge; 250 kW)</strong> interconnected under Net Plus / Net Accounting
+          agreements. Ground-mounted solar power plants operate under separate utility-scale avoided cost / PPA
+          frameworks and cannot apply the prosumer rooftop formula.
+        </div>
+      </div>
+
+      <!-- Tariff Sandbox & Live Math Engine -->
+      <div class="tariff-sandbox-card">
+
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 14px;">
+          <div>
+            <span id="sandboxTierBadge" class="badge-tier1">Rooftop Prosumer Tier 1 (250 – 1,000 kW)</span>
+            <div style="font-size: 1.35rem; font-weight: 800; color: var(--text-dark); margin-top: 6px;">
+              Interactive Tariff Calculation Engine
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 0.74rem; color: var(--text-dim); text-transform: uppercase; font-weight: 600;">
+              Effective Gazette Date</div>
+            <div style="font-size: 0.92rem; font-weight: 700; color: var(--text-main);" id="tariffMethodDate">2024-06-01
+            </div>
+          </div>
+        </div>
+
+        <!-- Formula Display Box -->
+        <div class="math-formula-box">
+          <div
+            style="font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-dark); font-weight: 700; margin-bottom: 6px;">
+            Published Regulatory Mathematical Equation
+          </div>
+          <div class="formula-tex" id="sandboxFormulaText">
+            Priority Tariff = 33.51 + (R1' / 0.95)
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);">
+            Applicable for daytime stored solar energy dispatched during the 18:30 – 22:30 peak window.
+          </div>
+        </div>
+
+        <!-- Interactive Parameter Sliders -->
+        <div class="form-grid" style="margin-bottom: 28px;">
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Solar Plant Capacity:</span>
+              <strong id="sandboxCapacityLabel" class="font-mono text-emerald-700">500 kW</strong>
+            </label>
+            <input type="range" id="sandboxCapacity" class="custom-range" min="250" max="3000" step="50" value="500">
+            <span class="form-label-hint">Determines Tier 1 (250–1,000 kW) vs Tier 2 (&gt; 1,000 kW) base rate.</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Reference Variable Fuel Index (R1'):</span>
+              <strong id="sandboxR1Label" class="font-mono text-cyan-700">13.45 LKR/kWh</strong>
+            </label>
+            <input type="range" id="sandboxR1" class="custom-range" min="8.00" max="22.00" step="0.25" value="13.45">
+            <span class="form-label-hint">Approved variable generation adjustment factor published by CEB/PUCSL.</span>
+          </div>
+
+        </div>
+
+        <!-- Step-by-Step Breakdown Grid -->
+        <div
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 28px;">
+
+          <div
+            style="background: var(--bg-subtle); border: 1px solid var(--border-subtle); padding: 18px; border-radius: var(--radius-md);">
+            <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; font-weight: 600;">1.
+              Fixed Base Rate</div>
+            <div
+              style="font-size: 1.4rem; font-weight: 800; font-family: var(--font-mono); color: var(--text-dark); margin-top: 4px;"
+              id="sandboxBaseRate">
+              33.51 LKR/kWh
+            </div>
+            <div style="font-size: 0.74rem; color: var(--text-dim); margin-top: 4px;">Fixed capital recovery benchmark
+            </div>
+          </div>
+
+          <div
+            style="background: var(--bg-subtle); border: 1px solid var(--border-subtle); padding: 18px; border-radius: var(--radius-md);">
+            <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; font-weight: 600;">2.
+              Reference Fuel Index (R1')</div>
+            <div
+              style="font-size: 1.4rem; font-weight: 800; font-family: var(--font-mono); color: var(--color-cyan); margin-top: 4px;"
+              id="sandboxR1Display">
+              13.45 LKR/kWh
+            </div>
+            <div style="font-size: 0.74rem; color: var(--text-dim); margin-top: 4px;">Variable generation adjustment
+            </div>
+          </div>
+
+          <div
+            style="background: var(--bg-subtle); border: 1px solid var(--border-subtle); padding: 18px; border-radius: var(--radius-md);">
+            <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; font-weight: 600;">3.
+              Variable Adj (R1' / 0.95)</div>
+            <div
+              style="font-size: 1.4rem; font-weight: 800; font-family: var(--font-mono); color: var(--color-amber); margin-top: 4px;"
+              id="sandboxVarAdj">
+              14.16 LKR/kWh
+            </div>
+            <div style="font-size: 0.74rem; color: var(--text-dim); margin-top: 4px;">Divided by 0.95 benchmark
+              efficiency</div>
+          </div>
+
+          <div
+            style="background: var(--accent-light); border: 1px solid var(--accent-border); padding: 18px; border-radius: var(--radius-md);">
+            <div style="font-size: 0.72rem; color: var(--accent-dark); text-transform: uppercase; font-weight: 700;">4.
+              Final Priority Peak Tariff</div>
+            <div
+              style="font-size: 1.55rem; font-weight: 900; font-family: var(--font-mono); color: var(--accent-emerald); margin-top: 4px;"
+              id="sandboxResultTariff">
+              47.67 LKR/kWh
+            </div>
+            <div style="font-size: 0.74rem; color: var(--accent-dark); margin-top: 4px; font-weight: 600;">Paid for
+              18:30 – 22:30 export</div>
+          </div>
+
+        </div>
+
+        <!-- Step List Detailed -->
+        <div class="method-steps-list" id="tariffStepsContainer">
+          <!-- Populated dynamically by UI module -->
+        </div>
+
+        <!-- Regulatory Source Footer -->
+        <div
+          style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-dim); flex-wrap: wrap; gap: 12px;">
+          <div>
+            <strong>Official Regulatory Source:</strong> <span id="tariffMethodRef">Gazette Extraordinary No. 2384/22 &
+              CEB Prosumer Guidelines</span>
+          </div>
+          <button id="openAdminModalBtn2" class="btn btn-ghost btn-sm" style="color: var(--accent-emerald);"
+            onclick="document.getElementById('openAdminModalBtn').click();">
+            <i data-lucide="settings" class="w-3.5 h-3.5 mr-1"></i> Edit Regulatory Constants
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- E. MULTI-STEP BESS FINANCIAL CALCULATOR                                   -->
+  <!-- ========================================================================= -->
+  <section id="calculator" class="section-wrapper" style="background: var(--bg-subtle);">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="section-eyebrow">Interactive Financial Engine</span>
+        <h2 class="section-title">BESS Financial Calculator</h2>
+        <p class="section-subtitle">
+          Configure your existing solar installation and proposed battery storage system to compute exact tariff
+          realization, additional annual cash flows, and payback metrics.
+        </p>
+      </div>
+
+      <!-- Wizard Main Container -->
+      <div class="wizard-container">
+
+        <!-- Step Indicators -->
+        <div class="wizard-stepper-header">
+          <div class="step-indicator-item step-active" data-step="1">
+            <div class="step-number">01</div>
+            <div class="step-info">
+              <span class="step-subtitle">Step 01</span>
+              <span class="step-title">Existing Solar Plant</span>
+            </div>
+          </div>
+
+          <div class="step-indicator-item" data-step="2">
+            <div class="step-number">02</div>
+            <div class="step-info">
+              <span class="step-subtitle">Step 02</span>
+              <span class="step-title">Generation & Export</span>
+            </div>
+          </div>
+
+          <div class="step-indicator-item" data-step="3">
+            <div class="step-number">03</div>
+            <div class="step-info">
+              <span class="step-subtitle">Step 03</span>
+              <span class="step-title">BESS Configuration</span>
+            </div>
+          </div>
+
+          <div class="step-indicator-item" data-step="4">
+            <div class="step-number">04</div>
+            <div class="step-info">
+              <span class="step-subtitle">Step 04</span>
+              <span class="step-title">Project Financials</span>
+            </div>
+          </div>
+
+          <div class="step-indicator-item" data-step="5">
+            <div class="step-number">05</div>
+            <div class="step-info">
+              <span class="step-subtitle">Step 05</span>
+              <span class="step-title">Results Dashboard</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wizard Body Panels -->
+        <div class="wizard-body">
+
+          <!-- ======================================================= -->
+          <!-- STEP 01: Existing Solar Plant Information               -->
+          <!-- ======================================================= -->
+          <div class="wizard-step-panel" id="wizardStep1">
+            <div style="margin-bottom: 24px;">
+              <h3 style="font-size: 1.3rem; margin-bottom: 6px;">STEP 01 — Existing Solar Plant Information</h3>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">Enter technical details of your operational solar
+                PV system.</p>
+            </div>
+
+            <!-- Error container -->
+            <div id="step1Error" class="regulatory-notice-banner danger hidden" style="margin-bottom: 20px;"></div>
+
+            <!-- Ground Mount Regulatory Notice -->
+            <div id="groundMountNotice" class="regulatory-notice-banner hidden" style="margin-bottom: 20px;">
+              <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0"></i>
+              <div style="font-size: 0.84rem; line-height: 1.5;">
+                <strong>GROUND-MOUNT NOTICE:</strong> Ground-mounted solar plants do not fall under the Prosumer Rooftop
+                Tariff schedule (33.51/30.27 + R1'/0.95). They are evaluated using the CEB Avoided Cost Utility Dispatch
+                Schedule.
+              </div>
+            </div>
+
+            <div class="form-grid">
+
+              <!-- Plant Type -->
+              <div class="form-group">
+                <label class="form-label">Plant Installation Type</label>
+                <select id="selectPlantType" class="form-control">
+                  <option value="rooftop" selected>Rooftop Solar PV (Prosumer Pathway)</option>
+                  <option value="ground">Ground-Mounted Solar PV (Utility Schedule)</option>
+                </select>
+                <span class="form-label-hint">Determines applicable regulatory tariff formula structure.</span>
+              </div>
+
+              <!-- Solar Plant Capacity -->
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Solar Plant Capacity (kW)</span>
+                  <span class="form-label-hint" style="color: var(--accent-emerald); font-weight: 600;">&ge; 250 kW
+                    required</span>
+                </label>
+                <div class="input-with-unit">
+                  <input type="number" id="inputSolarCapacity" class="form-control" min="250" max="25000" step="25"
+                    value="500">
+                  <span class="input-unit">kW</span>
+                </div>
+                <!-- Quick Selection Buttons -->
+                <div class="quick-cap-group">
+                  <button type="button" class="quick-cap-btn" data-capacity="250">250 kW</button>
+                  <button type="button" class="quick-cap-btn" data-capacity="500">500 kW</button>
+                  <button type="button" class="quick-cap-btn" data-capacity="1000">1,000 kW</button>
+                  <button type="button" class="quick-cap-btn" data-capacity="2000">2,000 kW</button>
+                </div>
+              </div>
+
+              <!-- Utility Provider -->
+              <div class="form-group">
+                <label class="form-label">Utility Interconnection Provider</label>
+                <select id="selectUtility" class="form-control">
+                  <option value="CEB" selected>Ceylon Electricity Board (CEB)</option>
+                  <option value="LECO">Lanka Electricity Company (LECO)</option>
+                </select>
+                <span class="form-label-hint">Grid operator managing the intertie substation.</span>
+              </div>
+
+              <!-- Existing Daytime Tariff -->
+              <div class="form-group">
+                <label class="form-label">Existing Daytime Feed-in Tariff</label>
+                <div class="input-with-unit">
+                  <input type="number" id="inputExistingTariff" class="form-control" min="10" max="60" step="0.5"
+                    value="22.00">
+                  <span class="input-unit">LKR/kWh</span>
+                </div>
+                <span class="form-label-hint">Current rate paid for daytime solar generation export.</span>
+              </div>
+
+              <!-- SPPA Agreement Details -->
+              <div class="form-group">
+                <label class="form-label">Current SPPA Agreement Scheme</label>
+                <select id="selectSppaType" class="form-control">
+                  <option value="Net Plus" selected>Net Plus (Full Export at Fixed Feed-in Tariff)</option>
+                  <option value="Net Accounting">Net Accounting (Export of Surplus After Consumption)</option>
+                  <option value="Standard SPPA">Standard Utility SPPA (Direct CEB PPA)</option>
+                </select>
+              </div>
+
+              <!-- Commissioning Year & Remaining Duration -->
+              <div class="form-group">
+                <label class="form-label">Remaining SPPA Contract Duration</label>
+                <div class="input-with-unit">
+                  <input type="number" id="inputRemainingYears" class="form-control" min="1" max="25" value="16">
+                  <span class="input-unit">Years</span>
+                </div>
+                <span class="form-label-hint">Standard agreements in Sri Lanka run for 20 years.</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ======================================================= -->
+          <!-- STEP 02: Solar Energy & Generation Dynamics             -->
+          <!-- ======================================================= -->
+          <div class="wizard-step-panel hidden" id="wizardStep2">
+            <div style="margin-bottom: 24px;">
+              <h3 style="font-size: 1.3rem; margin-bottom: 6px;">STEP 02 — Solar Energy & Export Information</h3>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">Configure average generation or upload historical
+                generation CSV data.</p>
+            </div>
+
+            <!-- CSV Upload Card -->
+            <div
+              style="background: var(--bg-subtle); border: 1px dashed var(--border-medium); border-radius: var(--radius-md); padding: 22px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <div
+                  style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: #eff6ff; border: 1px solid #bfdbfe; display: flex; align-items: center; justify-content: center; color: #2563eb;">
+                  <i data-lucide="file-spreadsheet" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-dark);">Upload Generation CSV File
+                  </div>
+                  <div style="font-size: 0.78rem; color: var(--text-dim);">Import 12-month generation records to
+                    auto-populate monthly data.</div>
+                  <div id="csvUploadStatus"></div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <button type="button" id="downloadSampleCsvBtn" class="btn btn-secondary btn-sm">
+                  <i data-lucide="download" class="w-3.5 h-3.5 mr-1"></i> Sample CSV
+                </button>
+                <label class="btn btn-primary btn-sm" style="margin: 0; cursor: pointer;">
+                  <i data-lucide="upload" class="w-3.5 h-3.5 mr-1"></i> Upload CSV
+                  <input type="file" id="solarCsvInput" accept=".csv" style="display: none;">
+                </label>
+              </div>
+            </div>
+
+            <div class="form-grid">
+
+              <!-- Average Monthly Generation -->
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Average Monthly Generation (kWh)</span>
+                  <span class="form-label-hint">Benchmark: ~122 kWh/kW/mo</span>
+                </label>
+                <div class="input-with-unit">
+                  <input type="number" id="inputMonthlyGen" class="form-control" min="10000" max="5000000" step="1000"
+                    value="61000">
+                  <span class="input-unit">kWh/mo</span>
+                </div>
+              </div>
+
+              <!-- Available Excess Solar Energy -->
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Available Excess Solar for BESS Charging</span>
+                  <span class="form-label-hint text-emerald-700">Export Surplus %</span>
+                </label>
+                <div class="input-with-unit">
+                  <input type="number" id="inputExcessPercent" class="form-control" min="10" max="100" step="5"
+                    value="55">
+                  <span class="input-unit">%</span>
+                </div>
+                <span class="form-label-hint">Fraction of daytime solar that can charge BESS without starving onsite
+                  loads.</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ======================================================= -->
+          <!-- STEP 03: Proposed BESS Technical Configuration          -->
+          <!-- ======================================================= -->
+          <div class="wizard-step-panel hidden" id="wizardStep3">
+            <div
+              style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
+              <div>
+                <h3 style="font-size: 1.3rem; margin-bottom: 6px;">STEP 03 — Proposed BESS Configuration</h3>
+                <p style="font-size: 0.88rem; color: var(--text-muted);">Define storage capacity, inverter power, and
+                  cell performance degradation.</p>
+              </div>
+              <!-- Smart Auto Sizing Button -->
+              <button type="button" id="smartAutoSizeBtn" class="btn btn-secondary btn-sm"
+                style="border-color: var(--accent-border); color: var(--accent-emerald);">
+                <i data-lucide="sparkles" class="w-4 h-4 mr-1 text-emerald-600"></i>
+                <span>Smart Auto-Sizing Recommendation</span>
+              </button>
+            </div>
+
+            <div class="form-grid">
+
+              <!-- Battery Capacity -->
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Battery Energy Capacity (kWh)</span>
+                  <span class="form-label-hint">Container Storage</span>
+                </label>
+                <div class="input-with-unit">
+                  <input type="number" id="inputBessCapacity" class="form-control" min="200" max="20000" step="50"
+                    value="1000">
+                  <span class="input-unit">kWh</span>
+                </div>
+                <span class="form-label-hint">Nominal nameplate capacity of the LFP battery system.</span>
+              </div>
+
+              <!-- Inverter / PCS Power Rating -->
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Inverter / PCS Power Rating (kW)</span>
+                  <span class="form-label-hint">C-Rate Rating</span>
+                </label>
+                <div class="input-with-unit">
+                  <input type="number" id="inputBessPower" class="form-control" min="50" max="5000" step="25"
+                    value="250">
+                  <span class="input-unit">kW</span>
+                </div>
+                <span class="form-label-hint">Power rating for 4-hour priority discharge window (C/4).</span>
+              </div>
+
+              <!-- Depth of Discharge -->
+              <div class="form-group">
+                <label class="form-label">Depth of Discharge (DoD %)</label>
+                <div class="input-with-unit">
+                  <input type="number" id="inputDoD" class="form-control" min="70" max="95" step="1" value="90">
+                  <span class="input-unit">%</span>
+                </div>
+                <span class="form-label-hint">Usable cycle depth (Standard LFP: 90%).</span>
+              </div>
+
+              <!-- Round-Trip Efficiency -->
+              <div class="form-group">
+                <label class="form-label">Round-Trip AC Efficiency (RTE %)</label>
+                <div class="input-with-unit">
+                  <input type="number" id="inputRTE" class="form-control" min="80" max="95" step="1" value="88">
+                  <span class="input-unit">%</span>
+                </div>
+                <span class="form-label-hint">AC-to-AC round trip including PCS and auxiliary HVAC.</span>
+              </div>
+
+              <!-- Daily Operating Cycles -->
+              <div class="form-group">
+                <label class="form-label">Daily Operating Cycles</label>
+                <div class="input-with-unit">
+                  <input type="number" id="inputDailyCycles" class="form-control" min="0.5" max="2.0" step="0.1"
+                    value="1.0">
+                  <span class="input-unit">Cycles/day</span>
+                </div>
+                <span class="form-label-hint">1 cycle per day matching the 18:30 – 22:30 priority peak.</span>
+              </div>
+
+              <!-- Annual Cell Degradation -->
+              <div class="form-group">
+                <label class="form-label">Annual Cell Degradation (%/year)</label>
+                <div class="input-with-unit">
+                  <input type="number" id="inputDegradation" class="form-control" min="0.8" max="3.5" step="0.1"
+                    value="1.8">
+                  <span class="input-unit">%/yr</span>
+                </div>
+                <span class="form-label-hint">Tier-1 LFP cell retention loss over 15-year life.</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ======================================================= -->
+          <!-- STEP 04: Project Financials & Capital Expenditure       -->
+          <!-- ======================================================= -->
+          <div class="wizard-step-panel hidden" id="wizardStep4">
+            <div style="margin-bottom: 24px;">
+              <h3 style="font-size: 1.3rem; margin-bottom: 6px;">STEP 04 — Project Capital Expenditure & Financing</h3>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">Review automated turnkey Capex estimates or enter
+                custom turnkey contractor costs.</p>
+            </div>
+
+            <div class="form-grid">
+
+              <!-- Total Turnkey Capex Override -->
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Turnkey EPC Project Cost (LKR)</span>
+                  <span class="form-label-hint text-emerald-700">Leave blank for benchmark</span>
+                </label>
+                <div class="input-with-unit">
+                  <input type="number" id="inputCustomCapex" class="form-control"
+                    placeholder="Auto-calculated (~85.5 Mn LKR)" min="10000000" step="500000">
+                  <span class="input-unit">LKR</span>
+                </div>
+                <span class="form-label-hint">Includes LFP containers, PCS inverter, civil foundation, fire suppression
+                  & CEB intertie.</span>
+              </div>
+
+              <!-- Financing: Debt vs Equity Share -->
+              <div class="form-group">
+                <label class="form-label">Debt Financing Share (%)</label>
+                <div class="input-with-unit">
+                  <input type="number" id="inputDebtShare" class="form-control" min="0" max="90" step="5" value="70">
+                  <span class="input-unit">% Debt</span>
+                </div>
+                <span class="form-label-hint">Remaining 30% funded via project equity.</span>
+              </div>
+
+              <!-- Loan Interest Rate -->
+              <div class="form-group">
+                <label class="form-label">Debt Loan Interest Rate (% p.a.)</label>
+                <div class="input-with-unit">
+                  <input type="number" id="inputInterestRate" class="form-control" min="5" max="25" step="0.25"
+                    value="11.5">
+                  <span class="input-unit">% p.a.</span>
+                </div>
+                <span class="form-label-hint">Concessionary green credit / commercial bank financing.</span>
+              </div>
+
+              <!-- Loan Tenor -->
+              <div class="form-group">
+                <label class="form-label">Loan Repayment Tenor</label>
+                <div class="input-with-unit">
+                  <input type="number" id="inputLoanTenor" class="form-control" min="3" max="15" value="7">
+                  <span class="input-unit">Years</span>
+                </div>
+                <span class="form-label-hint">Standard green debt repayment horizon.</span>
+              </div>
+
+              <!-- Discount Rate / WACC -->
+              <div class="form-group">
+                <label class="form-label">Discount Rate / WACC (% for NPV)</label>
+                <div class="input-with-unit">
+                  <input type="number" id="inputDiscountRate" class="form-control" min="8" max="22" step="0.5"
+                    value="12.0">
+                  <span class="input-unit">% WACC</span>
+                </div>
+                <span class="form-label-hint">Corporate hurdle rate for Net Present Value (NPV).</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ======================================================= -->
+          <!-- STEP 05: Dynamic Financial Analysis Dashboard           -->
+          <!-- ======================================================= -->
+          <div class="wizard-step-panel hidden" id="wizardStep5">
+
+            <div
+              style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 14px;">
+              <div>
+                <h3 style="font-size: 1.4rem; margin-bottom: 4px;">STEP 05 — Financial Feasibility & Analysis Dashboard
+                </h3>
+                <p style="font-size: 0.88rem; color: var(--text-muted);">Real-time investment metrics derived from your
+                  inputs and PUCSL prosumer tariff formula.</p>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                <!-- Sensitivity Scenarios -->
+                <div class="scenario-selector-wrap">
+                  <button type="button" class="scenario-toggle-btn" data-scenario="conservative">Conservative
+                    (-15%)</button>
+                  <button type="button" class="scenario-toggle-btn scenario-btn-active" data-scenario="base">Base
+                    Case</button>
+                  <button type="button" class="scenario-toggle-btn" data-scenario="optimistic">Optimistic
+                    (+15%)</button>
+                </div>
+
+                <!-- PDF Export Button -->
+                <button type="button" id="downloadPdfBtn" class="btn btn-primary btn-sm">
+                  <i data-lucide="file-down" class="w-4 h-4 mr-1"></i>
+                  <span>Download Bankable Proposal (PDF)</span>
+                </button>
+
+                <!-- Print Report Button -->
+                <button type="button" id="printReportBtn" class="btn btn-secondary btn-sm"
+                  title="Print Executive Summary">
+                  <i data-lucide="printer" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- KEY PERFORMANCE INDICATORS (KPIs) -->
+            <div class="kpi-grid">
+
+              <!-- Priority Tariff -->
+              <div class="kpi-card highlight">
+                <div class="kpi-label">
+                  <span>Priority Peak Tariff</span>
+                  <i data-lucide="zap" class="w-4 h-4 text-emerald-600"></i>
+                </div>
+                <div class="kpi-value text-emerald-700" id="kpiPriorityTariff">47.67 LKR</div>
+                <div class="kpi-subtext" style="color: var(--accent-emerald);" id="kpiTariffSpread">+25.67 LKR (+116.7%)
+                  Spread</div>
+              </div>
+
+              <!-- Other Period Tariff -->
+              <div class="kpi-card">
+                <div class="kpi-label">
+                  <span>Other-Period Tariff</span>
+                  <i data-lucide="sun" class="w-4 h-4 text-amber-500"></i>
+                </div>
+                <div class="kpi-value" id="kpiOtherTariff">22.00 LKR</div>
+                <div class="kpi-subtext">Baseline Daytime Export</div>
+              </div>
+
+              <!-- Proposed BESS Capacity -->
+              <div class="kpi-card">
+                <div class="kpi-label">
+                  <span>Proposed BESS</span>
+                  <i data-lucide="battery-charging" class="w-4 h-4 text-cyan-600"></i>
+                </div>
+                <div class="kpi-value" style="color: var(--color-cyan);" id="kpiBessCapacity">1,000 kWh</div>
+                <div class="kpi-subtext" id="kpiBessPower">250 kW PCS (0.25C)</div>
+              </div>
+
+              <!-- Annual Discharge Energy -->
+              <div class="kpi-card">
+                <div class="kpi-label">
+                  <span>Annual Peak Discharge</span>
+                  <i data-lucide="activity" class="w-4 h-4 text-amber-600"></i>
+                </div>
+                <div class="kpi-value" id="kpiAnnualDischarge">289.1k kWh</div>
+                <div class="kpi-subtext">Year 1 Net Fed to Grid</div>
+              </div>
+
+              <!-- Annual Gross Revenue -->
+              <div class="kpi-card highlight">
+                <div class="kpi-label">
+                  <span>Annual Gross Revenue</span>
+                  <i data-lucide="trending-up" class="w-4 h-4 text-emerald-600"></i>
+                </div>
+                <div class="kpi-value text-emerald-700" id="kpiGrossRevenue">13.78 Mn LKR</div>
+                <div class="kpi-subtext">Direct BESS Arbitrage Gain</div>
+              </div>
+
+              <!-- Annual Net Cash Flow -->
+              <div class="kpi-card">
+                <div class="kpi-label">
+                  <span>Year 1 Net Cash Flow</span>
+                  <i data-lucide="dollar-sign" class="w-4 h-4 text-emerald-600"></i>
+                </div>
+                <div class="kpi-value" id="kpiNetCashFlow">12.61 Mn LKR</div>
+                <div class="kpi-subtext">After Annual O&M</div>
+              </div>
+
+              <!-- Total BESS Turnkey Capex -->
+              <div class="kpi-card">
+                <div class="kpi-label">
+                  <span>Total Turnkey Capex</span>
+                  <i data-lucide="layers" class="w-4 h-4 text-slate-500"></i>
+                </div>
+                <div class="kpi-value" id="kpiTotalCapex">85.55 Mn LKR</div>
+                <div class="kpi-subtext">Equipment + BOP + Civil</div>
+              </div>
+
+              <!-- Payback Period -->
+              <div class="kpi-card highlight">
+                <div class="kpi-label">
+                  <span>Estimated Payback</span>
+                  <i data-lucide="clock" class="w-4 h-4 text-emerald-600"></i>
+                </div>
+                <div class="kpi-value text-emerald-700" id="kpiPayback">6.8 Yrs</div>
+                <div class="kpi-subtext">Simple Break-Even Horizon</div>
+              </div>
+
+              <!-- Project IRR -->
+              <div class="kpi-card">
+                <div class="kpi-label">
+                  <span>Project IRR</span>
+                  <i data-lucide="percent" class="w-4 h-4 text-emerald-600"></i>
+                </div>
+                <div class="kpi-value" style="color: var(--accent-emerald);" id="kpiProjectIrr">18.4%</div>
+                <div class="kpi-subtext">Unlevered Internal Rate</div>
+              </div>
+
+              <!-- Project NPV -->
+              <div class="kpi-card">
+                <div class="kpi-label">
+                  <span>15-Year Project NPV</span>
+                  <i data-lucide="shield-check" class="w-4 h-4 text-cyan-600"></i>
+                </div>
+                <div class="kpi-value" id="kpiNpv">21.45 Mn LKR</div>
+                <div class="kpi-subtext">Discounted at 12.0% WACC</div>
+              </div>
+
+              <!-- ROI -->
+              <div class="kpi-card">
+                <div class="kpi-label">
+                  <span>15-Year ROI</span>
+                  <i data-lucide="award" class="w-4 h-4 text-amber-600"></i>
+                </div>
+                <div class="kpi-value" style="color: var(--color-amber);" id="kpiRoi">96.8%</div>
+                <div class="kpi-subtext">Total Cash Return on Capex</div>
+              </div>
+
+              <!-- CO2 Avoided -->
+              <div class="kpi-card">
+                <div class="kpi-label">
+                  <span>Annual CO2 Displaced</span>
+                  <i data-lucide="leaf" class="w-4 h-4 text-emerald-600"></i>
+                </div>
+                <div class="kpi-value" style="color: var(--accent-emerald);" id="kpiCo2Avoided">208 Tons</div>
+                <div class="kpi-subtext">Avoided Thermal Peaker Grid</div>
+              </div>
+
+            </div>
+
+            <!-- CHARTS SECTION: 6 ADVANCED CHARTS -->
+            <div class="charts-grid">
+
+              <!-- Chart 1: Monthly Energy Generation & Shift -->
+              <div class="chart-card">
+                <div class="chart-card-header">
+                  <div class="chart-title">1. Monthly Solar Generation & BESS Shift (kWh)</div>
+                  <span style="font-size: 0.74rem; color: var(--text-dim); font-weight: 500;">Direct Export vs Stored
+                    Energy</span>
+                </div>
+                <div class="chart-canvas-wrap">
+                  <canvas id="chartMonthlyGen"></canvas>
+                </div>
+              </div>
+
+              <!-- Chart 2: 24-Hour Battery Charging vs Discharging -->
+              <div class="chart-card">
+                <div class="chart-card-header">
+                  <div class="chart-title">2. Daily 24-Hour Battery Dispatch Profile (kW)</div>
+                  <span style="font-size: 0.74rem; color: var(--text-dim); font-weight: 500;">Midday Charge vs
+                    18:30–22:30 Peak</span>
+                </div>
+                <div class="chart-canvas-wrap">
+                  <canvas id="chartDailyDispatch"></canvas>
+                </div>
+              </div>
+
+              <!-- Chart 3: Priority vs Other-Period Revenue -->
+              <div class="chart-card">
+                <div class="chart-card-header">
+                  <div class="chart-title">3. Priority vs Other-Period Revenue Uplift</div>
+                  <span style="font-size: 0.74rem; color: var(--text-dim); font-weight: 500;">Baseline Solar vs Solar +
+                    BESS</span>
+                </div>
+                <div class="chart-canvas-wrap">
+                  <canvas id="chartRevenueComp"></canvas>
+                </div>
+              </div>
+
+              <!-- Chart 4: Annual Revenue Projection with Degradation -->
+              <div class="chart-card">
+                <div class="chart-card-header">
+                  <div class="chart-title">4. 15-Year Annual Revenue & O&M Projection</div>
+                  <span style="font-size: 0.74rem; color: var(--text-dim); font-weight: 500;">Gross Rev, O&M, Net Cash
+                    Flow</span>
+                </div>
+                <div class="chart-canvas-wrap">
+                  <canvas id="chartAnnualCashFlow"></canvas>
+                </div>
+              </div>
+
+              <!-- Chart 5: 15-Year Cumulative Cash Flow & Break-Even -->
+              <div class="chart-card full-width">
+                <div class="chart-card-header">
+                  <div class="chart-title">5. 15-Year Cumulative Cash Flow & Investment Recovery Curve</div>
+                  <span style="font-size: 0.75rem; color: var(--accent-emerald); font-weight: 700;">Cross-Over Indicates
+                    Payback Milestone</span>
+                </div>
+                <div class="chart-canvas-wrap tall">
+                  <canvas id="chartCumulativeCashFlow"></canvas>
+                </div>
+              </div>
+
+              <!-- Chart 6: Scenario Sensitivity Comparison -->
+              <div class="chart-card full-width">
+                <div class="chart-card-header">
+                  <div class="chart-title">6. Scenario Sensitivity Matrix: Payback vs Project IRR</div>
+                  <span style="font-size: 0.74rem; color: var(--text-dim); font-weight: 500;">Conservative vs Base Case
+                    vs Optimistic</span>
+                </div>
+                <div class="chart-canvas-wrap">
+                  <canvas id="chartScenarioSensitivity"></canvas>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- 15-YEAR FINANCIAL PRO-FORMA CASH FLOW TABLE -->
+            <div style="margin-top: 32px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-dark);">
+                  15-Year Detailed Financial Pro-Forma Schedule
+                </h4>
+                <span style="font-size: 0.78rem; color: var(--text-dim);">All values modeled dynamically from your plant
+                  specifications</span>
+              </div>
+              <div class="table-container">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Period</th>
+                      <th style="text-align: right;">Capacity Retention</th>
+                      <th style="text-align: right;">Discharge (kWh)</th>
+                      <th style="text-align: right;">BESS Gross Rev</th>
+                      <th style="text-align: right;">O&M Cost</th>
+                      <th style="text-align: right;">Debt Service</th>
+                      <th style="text-align: right;">Net Cash Flow</th>
+                      <th style="text-align: right;">Cumulative Balance</th>
+                    </tr>
+                  </thead>
+                  <tbody id="proFormaTableBody">
+                    <!-- Populated dynamically by UI module -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Wizard Navigation Footer -->
+        <div class="wizard-footer">
+          <button type="button" id="wizardPrevBtn" class="btn btn-secondary btn-sm" disabled>
+            <i data-lucide="arrow-left" class="w-4 h-4 mr-1"></i>
+            <span>Previous Step</span>
+          </button>
+
+          <button type="button" id="wizardNextBtn" class="btn btn-primary btn-sm">
+            <span>Next Step</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- F. ABOUT BESS & COMMERCIAL ADVANTAGES                                    -->
+  <!-- ========================================================================= -->
+  <section id="about-bess" class="section-wrapper"
+    style="background: #ffffff; border-top: 1px solid var(--border-subtle);">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="section-eyebrow">Enterprise Technology</span>
+        <h2 class="section-title">Why Commercial Solar Operators Choose BESS</h2>
+        <p class="section-subtitle">
+          Modern utility-grade Lithium Iron Phosphate (LFP) containers offer superior round-trip efficiency, intrinsic
+          fire safety, and unmatched revenue enhancement for existing solar assets.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+
+        <div
+          style="background: #ffffff; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm);">
+          <div
+            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--accent-light); border: 1px solid var(--accent-border); display: flex; align-items: center; justify-content: center; color: var(--accent-emerald); margin-bottom: 20px;">
+            <i data-lucide="trending-up" class="w-6 h-6"></i>
+          </div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: var(--text-dark);">Peak Tariff Arbitrage</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+            Shift low-value daytime solar generation (22.00 LKR/kWh) into the high-value 18:30 – 22:30 priority feed-in
+            tariff (up to 47.67 LKR/kWh), capturing an immediate +116% revenue spread per discharged unit.
+          </p>
+        </div>
+
+        <div
+          style="background: #ffffff; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm);">
+          <div
+            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: #eff6ff; border: 1px solid #bfdbfe; display: flex; align-items: center; justify-content: center; color: #2563eb; margin-bottom: 20px;">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: var(--text-dark);">Eliminate Curtailment Loss</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+            When utility grid substations order curtailment or reverse-power limitations during low midday feeder loads,
+            the BESS absorbs 100% of generated solar, preventing financial loss and wasted kilowatt-hours.
+          </p>
+        </div>
+
+        <div
+          style="background: #ffffff; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm);">
+          <div
+            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: #fffbeb; border: 1px solid #fde68a; display: flex; align-items: center; justify-content: center; color: #d97706; margin-bottom: 20px;">
+            <i data-lucide="flame" class="w-6 h-6"></i>
+          </div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: var(--text-dark);">Tier-1 LFP Chemistry & Safety
+          </h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+            Utilizes Lithium Iron Phosphate (LiFePO4) chemistry with non-propagating thermal runaways, integrated
+            aerosol fire suppression, and liquid HVAC thermal control providing 6,000+ cycle operational durability.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- G. CONTACT & PROJECT ENQUIRY (Clean White Form Card)                       -->
+  <!-- ========================================================================= -->
+  <section id="contact" class="section-wrapper"
+    style="background: var(--bg-subtle); border-top: 1px solid var(--border-subtle);">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="section-eyebrow">Expert Advisory & EPC Integration</span>
+        <h2 class="section-title">Request a BESS Feasibility Consultation</h2>
+        <p class="section-subtitle">
+          Our engineering and financial specialists at <strong>EXIMIUS POWER AND ENERGY</strong> will prepare a bankable
+          grid impact study, technical equipment sizing, and CEB / LECO interconnection submission for your solar plant.
+        </p>
+      </div>
+
+      <div
+        style="max-width: 780px; margin: 0 auto; background: #ffffff; border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 40px; box-shadow: var(--shadow-card);">
+
+        <form id="projectEnquiryForm">
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" id="contactName" class="form-control" required placeholder="e.g. Asoka Perera">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Company / Organization *</label>
+              <input type="text" id="contactCompany" class="form-control" required
+                placeholder="e.g. Lanka Greenfield Holdings">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Business Email Address *</label>
+              <input type="email" id="contactEmail" class="form-control" required placeholder="asoka@greenfield.lk">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Contact Phone / Mobile *</label>
+              <input type="tel" id="contactPhone" class="form-control" required placeholder="+94 77 123 4567">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Existing Solar Plant Capacity</label>
+              <input type="text" id="contactSolarCapacity" class="form-control" readonly
+                style="background: var(--bg-subtle);">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Proposed BESS Capacity</label>
+              <input type="text" id="contactBessCapacity" class="form-control" readonly
+                style="background: var(--bg-subtle);">
+            </div>
+
+            <div class="form-group" style="grid-column: span 2;">
+              <label class="form-label">Plant Location & Interconnection Substation</label>
+              <input type="text" id="contactLocation" class="form-control"
+                placeholder="e.g. Peliyagoda Industrial Zone, Gampaha District">
+            </div>
+
+            <div class="form-group" style="grid-column: span 2;">
+              <label class="form-label">Project Requirements or Special Considerations</label>
+              <textarea id="contactDescription" class="form-control" rows="3"
+                placeholder="Tell us about your current daytime tariff, backup power requirements, or utility interconnection timeline..."></textarea>
+            </div>
+
+          </div>
+
+          <div style="margin-top: 32px; text-align: center;">
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; max-width: 380px;">
+              <i data-lucide="send" class="w-4 h-4 mr-2"></i>
+              <span>Request a BESS Consultation</span>
+            </button>
+            <div style="font-size: 0.78rem; color: var(--text-dim); margin-top: 14px;">
+              Strict confidentiality assured. Non-disclosure agreements (NDAs) available prior to technical audits.
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER (Exact Match to Eximius Power & Energy Specification)              -->
+  <!-- ========================================================================= -->
+  <footer class="eximius-footer">
+    <div class="container">
+
+      <!-- Main Footer 3-Column Grid -->
+      <div class="eximius-footer-grid">
+
+        <!-- Column 1: Reach out & Social Buttons -->
+        <div class="eximius-footer-col">
+          <h3 class="eximius-footer-heading">
+            Reach out to us today and let's shed some light on your needs
+          </h3>
+          <p class="eximius-footer-sub">
+            Leading provider of sustainable energy solutions in Sri Lanka
+          </p>
+
+          <!-- White Square Social Icons Row (Matching User Specification Exactly) -->
+          <div class="eximius-social-boxes">
+            <!-- 1. Facebook 'f' -->
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-box" aria-label="Facebook">
+              <span class="social-char-f">f</span>
+            </a>
+
+            <!-- 2. LinkedIn 'in' -->
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-box" aria-label="LinkedIn">
+              <span class="social-char-in">in</span>
+            </a>
+
+            <!-- 3. Instagram Camera -->
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-box" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2.5"></line>
+              </svg>
+            </a>
+
+            <!-- 4. YouTube Stacked Badge -->
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-box" aria-label="YouTube">
+              <div class="yt-stacked-icon">
+                <span class="yt-top-text">You</span>
+                <span class="yt-bottom-badge">Tube</span>
+              </div>
+            </a>
+
+            <!-- 5. Pinterest Cursive P -->
+            <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" class="social-box" aria-label="Pinterest">
+              <svg viewBox="0 0 24 24" width="19" height="19" fill="#1e293b">
+                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/>
+              </svg>
+            </a>
+
+            <!-- 6. Twitter Bird -->
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-box" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="#1e293b">
+                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.936 9.936 0 0024 4.59z"/>
+              </svg>
+            </a>
+
+            <!-- 7. WhatsApp Speech Bubble -->
+            <a href="https://wa.me/94768222222" target="_blank" rel="noopener noreferrer" class="social-box" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.979-.276-.1-.476-.15-.676.15-.2.301-.776.979-.951 1.18-.175.2-.351.226-.652.075-.301-.151-1.27-.468-2.42-1.493-.896-.798-1.501-1.784-1.677-2.085-.175-.301-.019-.464.132-.614.135-.135.301-.351.451-.527.151-.175.201-.301.301-.501.1-.2.05-.376-.025-.526-.075-.151-.676-1.63-.927-2.232-.244-.587-.492-.507-.676-.516l-.576-.01c-.2 0-.526.075-.801.376-.276.301-1.053 1.029-1.053 2.508 0 1.479 1.078 2.908 1.228 3.109.15.2 2.122 3.24 5.141 4.544.718.31 1.278.496 1.716.635.722.23 1.379.197 1.9.12.579-.087 1.782-.728 2.033-1.431.251-.703.251-1.304.175-1.431-.075-.126-.275-.201-.576-.351z" fill="#25D366"/>
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 1.892.526 3.663 1.442 5.176L2 22l4.981-1.408A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2a8.17 8.17 0 01-4.227-1.171l-.303-.18-2.957.836.837-2.884-.197-.313A8.187 8.187 0 013.8 12c0-4.521 3.679-8.2 8.2-8.2 4.521 0 8.2 3.679 8.2 8.2 0 4.521-3.679 8.2-8.2 8.2z" fill="#25D366"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Knowledge Bank & Policies -->
+        <div class="eximius-footer-col">
+          <h3 class="eximius-footer-heading">
+            Dive into Our Solar Knowledge Bank for Enlightening Insights and Sustainable Solutions
+          </h3>
+
+          <ul class="eximius-knowledge-list">
+            <li>
+              <a href="#">How to select best suited inverter for your solar power system</a>
+            </li>
+            <li>
+              <a href="#">How to select best suited battery for your solar power system</a>
+            </li>
+            <li>
+              <a href="#">Advancements &amp; innovations in solar technology</a>
+            </li>
+            <li>
+              <a href="#">Footstep Power Generation Technology</a>
+            </li>
+          </ul>
+
+          <div class="eximius-policy-links">
+            <a href="#">Refund Policy</a>
+            <span class="policy-sep">|</span>
+            <a href="#">Privacy Policy</a>
+            <span class="policy-sep">|</span>
+            <a href="#">Terms &amp; Conditions</a>
+          </div>
+        </div>
+
+        <!-- Column 3: Office, Questions & Hotline -->
+        <div class="eximius-footer-col">
+          
+          <!-- Office Section -->
+          <div class="eximius-contact-block">
+            <div class="contact-title-row">
+              <i data-lucide="map-pin" class="w-4 h-4 contact-icon"></i>
+              <span class="contact-title">Office:</span>
+            </div>
+            <div class="contact-desc">
+              Eximius Power &amp; Energy (Private) Limited<br>
+              No: 74 1/1,<br>
+              Orient Building, Union Place,<br>
+              Colombo 02, Sri Lanka.
+            </div>
+          </div>
+
+          <!-- Questions Section -->
+          <div class="eximius-contact-block">
+            <div class="contact-title-row">
+              <i data-lucide="mail" class="w-4 h-4 contact-icon"></i>
+              <span class="contact-title">Have any questions?</span>
+            </div>
+            <div class="contact-desc">
+              <a href="mailto:info@eximiuspe.com" class="contact-green-link">info@eximiuspe.com</a>
+            </div>
+          </div>
+
+          <!-- Hotline / WhatsApp Section -->
+          <div class="eximius-contact-block">
+            <div class="contact-title-row">
+              <i data-lucide="phone-call" class="w-4 h-4 contact-icon"></i>
+              <span class="contact-title">Hotline / WhatsApp:</span>
+            </div>
+            <div class="contact-desc">
+              <span class="contact-green-text">(+94) 768 222 222 | (+94) 717 877 788</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar: Copyright & Green Social Icons -->
+      <div class="eximius-footer-bottom">
+        <div class="eximius-copyright">
+          &copy; 2026 | Eximius (Pvt) Ltd | All Rights Reserved
+        </div>
+
+        <div class="eximius-green-icons">
+          <a href="#" aria-label="Spotify / Podcast" class="green-icon-btn"><i data-lucide="podcast" class="w-4 h-4"></i></a>
+          <a href="#" aria-label="WhatsApp" class="green-icon-btn"><i data-lucide="message-circle" class="w-4 h-4"></i></a>
+          <a href="#" aria-label="Facebook" class="green-icon-btn"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+          <a href="#" aria-label="X / Twitter" class="green-icon-btn"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+          <a href="#" aria-label="Vimeo / Video" class="green-icon-btn"><i data-lucide="video" class="w-4 h-4"></i></a>
+          <a href="#" aria-label="YouTube" class="green-icon-btn"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+          <a href="#" aria-label="More" class="green-icon-btn"><i data-lucide="more-horizontal" class="w-4 h-4"></i></a>
+          <a href="#" aria-label="LinkedIn" class="green-icon-btn"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+          <a href="#" aria-label="Pinterest" class="green-icon-btn"><i data-lucide="bookmark" class="w-4 h-4"></i></a>
+          <a href="#" aria-label="Instagram" class="green-icon-btn"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: ADMIN TARIFF CONFIGURATION SYSTEM                                   -->
+  <!-- ========================================================================= -->
+  <div id="adminConfigModal" class="modal-backdrop hidden">
+    <div class="modal-dialog">
+
+      <div class="modal-header">
+        <div>
+          <div style="font-size: 1.2rem; font-weight: 800; color: var(--text-dark);">
+            Administrative Tariff Configuration
+          </div>
+          <div style="font-size: 0.78rem; color: var(--text-dim);">
+            Update regulatory tariff constants, R1' index, and capacity bands without editing code.
+          </div>
+        </div>
+        <button type="button" id="closeAdminModalBtn" class="btn btn-ghost btn-sm" style="padding: 4px;">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="adminConfigForm">
+        <div class="modal-body">
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label class="form-label">Rooftop Tier 1 Base Rate (LKR/kWh)</label>
+              <input type="number" id="adminTier1Base" class="form-control" step="0.01" required>
+              <span class="form-label-hint">Default: 33.51 for 250 kW to 1,000 kW</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Rooftop Tier 2 Base Rate (LKR/kWh)</label>
+              <input type="number" id="adminTier2Base" class="form-control" step="0.01" required>
+              <span class="form-label-hint">Default: 30.27 for > 1,000 kW</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Reference Fuel Index R1' (LKR/kWh)</label>
+              <input type="number" id="adminR1Prime" class="form-control" step="0.01" required>
+              <span class="form-label-hint">Variable generation cost adjustment factor</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Efficiency Benchmark Divisor (η)</label>
+              <input type="number" id="adminDivisor" class="form-control" step="0.01" required>
+              <span class="form-label-hint">Standardized regulatory denominator (0.95)</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Ground-Mount Avoided Cost (LKR/kWh)</label>
+              <input type="number" id="adminGmBase" class="form-control" step="0.01" required>
+              <span class="form-label-hint">Base utility rate for ground solar category</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Ground-Mount Peak Multiplier</label>
+              <input type="number" id="adminGmMultiplier" class="form-control" step="0.01" required>
+              <span class="form-label-hint">Default: 1.35x for peak hour dispatch</span>
+            </div>
+
+            <div class="form-group" style="grid-column: span 2;">
+              <label class="form-label">Regulatory Gazette Reference Text</label>
+              <input type="text" id="adminGazetteRef" class="form-control" required>
+            </div>
+
+            <div class="form-group" style="grid-column: span 2;">
+              <label class="form-label">Effective Tariff Gazette Date</label>
+              <input type="date" id="adminEffectiveDate" class="form-control" required>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="adminResetBtn" class="btn btn-secondary btn-sm"
+            style="margin-right: auto; color: var(--color-rose);">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 mr-1"></i> Reset to Defaults
+          </button>
+          <button type="button" onclick="document.getElementById('adminConfigModal').classList.add('hidden')"
+            class="btn btn-secondary btn-sm">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary btn-sm">
+            <i data-lucide="check" class="w-3.5 h-3.5 mr-1"></i> Save Configuration
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: ENQUIRY SUCCESS CONFIRMATION                                       -->
+  <!-- ========================================================================= -->
+  <div id="enquirySuccessModal" class="modal-backdrop hidden">
+    <div class="modal-dialog" style="max-width: 480px; text-align: center; padding: 36px 28px;">
+      <div
+        style="width: 56px; height: 56px; border-radius: 50%; background: var(--accent-light); border: 2px solid var(--accent-emerald); display: flex; align-items: center; justify-content: center; color: var(--accent-emerald); margin: 0 auto 20px auto;">
+        <i data-lucide="check" class="w-8 h-8"></i>
+      </div>
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-dark); margin-bottom: 8px;">
+        Feasibility Consultation Requested
+      </h3>
+      <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 18px;">
+        Thank you, <strong id="modalClientName" class="text-slate-900">Client</strong>! Your BESS feasibility assessment
+        for <span id="modalEnquirySummary" class="text-emerald-700 font-semibold">500 kW Solar</span> has been logged
+        with <strong>EXIMIUS POWER AND ENERGY</strong>.
+      </p>
+      <div
+        style="background: var(--bg-subtle); padding: 16px; border-radius: var(--radius-md); font-size: 0.82rem; color: var(--text-muted); margin-bottom: 24px; text-align: left; border: 1px solid var(--border-subtle);">
+        <strong style="color: var(--text-dark);">Next Steps:</strong>
+        <ul style="margin-top: 6px; padding-left: 18px; line-height: 1.6;">
+          <li>CEB/LECO Substation Feeder Capacity Review</li>
+          <li>Preliminary Single Line Diagram (SLD) Generation</li>
+          <li>Detailed Financial Model Delivery via Email</li>
+        </ul>
+      </div>
+      <button type="button" id="closeEnquirySuccessBtn" class="btn btn-primary" style="width: 100%;">
+        Return to Platform
+      </button>
+    </div>
+  </div>
+
+  <!-- Core JavaScript Modules -->
+  <script src="js/config.js"></script>
+  <script src="js/tariffEngine.js"></script>
+  <script src="js/energyEngine.js"></script>
+  <script src="js/financialEngine.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/reportGenerator.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/cursor.js"></script>
+
+</body>
+
+</html>
